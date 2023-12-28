@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "geography"
+  site-url: "https://xiaochuany.github.io/geography"
+  description: "a module about random geometric graphs"
+  repo-branch: main
+  repo-url: "https://github.com/xiaochuany/geography"
