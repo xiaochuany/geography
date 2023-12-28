@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "geography",
+    "section": "",
+    "text": "pip install geography"
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "geography",
+    "section": "",
+    "text": "pip install geography"
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "geography",
+    "section": "How to use",
+    "text": "How to use\ncreate a random geometric graph\n\nrgg = RGG(5,0.1)\n\n\nrgg.distances\n\narray([[0.        , 0.41692305, 0.54321049, 0.38930793, 0.14989957],\n       [0.41692305, 0.        , 0.93033062, 0.49512131, 0.4051384 ],\n       [0.54321049, 0.93033062, 0.        , 0.58329046, 0.65593205],\n       [0.38930793, 0.49512131, 0.58329046, 0.        , 0.52525604],\n       [0.14989957, 0.4051384 , 0.65593205, 0.52525604, 0.        ]])"
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nRGG\n\n RGG (n:int, r:float)\n\nrandom geometric graph\n\nrgg = RGG(10,0.3)\n\n\nassert  (rgg.distances == (rgg.distances).T).all()"
+  }
+]
