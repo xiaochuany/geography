@@ -5,4 +5,6 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://xiaochuany.github.io',
                 'git_url': 'https://github.com/xiaochuany/geography',
                 'lib_path': 'geography'},
-  'syms': {'geography.core': {'geography.core.foo': ('core.html#foo', 'geography/core.py')}}}
+  'syms': { 'geography.core': { 'geography.core.RGG': ('core.html#rgg', 'geography/core.py'),
+                                'geography.core.RGG.__init__': ('core.html#rgg.__init__', 'geography/core.py'),
+                                'geography.core.RGG.distances': ('core.html#rgg.distances', 'geography/core.py')}}}
