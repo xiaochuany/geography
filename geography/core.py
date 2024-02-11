@@ -6,6 +6,7 @@ __all__ = ['RGG']
 # %% ../nbs/00_core.ipynb 3
 import numpy as np
 import functools
+import seaborn.objects as so
 
 # %% ../nbs/00_core.ipynb 4
 class RGG:
@@ -18,3 +19,8 @@ class RGG:
     @functools.cached_property
     def distances(self):
         return np.array([np.sqrt(np.sum((x- self.points)**2, axis=1)) for x in self.points])
+
+    @functools.cached_property
+    def adj(self):
+        mask = self.distances < self.r
+        return {i: [j for j,v in enumerate(row) if v and j != i] for i,row in enumerate(mask)}
