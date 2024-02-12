@@ -8,4 +8,5 @@ d = { 'settings': { 'branch': 'main',
   'syms': { 'geography.core': { 'geography.core.RGG': ('core.html#rgg', 'geography/core.py'),
                                 'geography.core.RGG.__init__': ('core.html#rgg.__init__', 'geography/core.py'),
                                 'geography.core.RGG.adj': ('core.html#rgg.adj', 'geography/core.py'),
-                                'geography.core.RGG.distances': ('core.html#rgg.distances', 'geography/core.py')}}}
+                                'geography.core.RGG.distances': ('core.html#rgg.distances', 'geography/core.py'),
+                                'geography.core.RGG.n_comp': ('core.html#rgg.n_comp', 'geography/core.py')}}}

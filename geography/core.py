@@ -24,3 +24,18 @@ class RGG:
     def adj(self):
         mask = self.distances < self.r
         return {i: [j for j,v in enumerate(row) if v and j != i] for i,row in enumerate(mask)}
+    
+    def n_comp(self):
+        def dfs(gr,s):
+            for v in gr[s]:
+                if v not in self.parent:
+                    self.parent[v]=s
+                    dfs(gr,v)
+        self.parent = {}
+        res = 0
+        for i in range(self.n):
+            if i not in self.parent:
+                res+=1
+                self.parent[i]=None
+                dfs(self.adj,i)
+        return res
