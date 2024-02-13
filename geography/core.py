@@ -7,6 +7,7 @@ __all__ = ['RGG']
 import numpy as np
 import functools
 import seaborn.objects as so
+import collections
 
 # %% ../nbs/00_core.ipynb 4
 class RGG:
@@ -39,3 +40,7 @@ class RGG:
                 self.parent[i]=None
                 dfs(self.adj,i)
         return res
+
+    def degree_distribution(self):
+        dgr=collections.Counter([len(v) for _,v in self.adj.items()])
+        return np.array(list(dgr.items()))
