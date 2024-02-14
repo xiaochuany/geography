@@ -11,4 +11,5 @@ d = { 'settings': { 'branch': 'main',
                                 'geography.core.RGG.cyclic': ('core.html#rgg.cyclic', 'geography/core.py'),
                                 'geography.core.RGG.degree_distribution': ('core.html#rgg.degree_distribution', 'geography/core.py'),
                                 'geography.core.RGG.distances': ('core.html#rgg.distances', 'geography/core.py'),
-                                'geography.core.RGG.n_comp': ('core.html#rgg.n_comp', 'geography/core.py')}}}
+                                'geography.core.RGG.n_comp': ('core.html#rgg.n_comp', 'geography/core.py'),
+                                'geography.core.RGG.n_tri': ('core.html#rgg.n_tri', 'geography/core.py')}}}
