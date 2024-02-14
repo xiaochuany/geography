@@ -8,6 +8,7 @@ import numpy as np
 import functools
 import seaborn.objects as so
 import collections
+from fastcore.basics import patch
 
 # %% ../nbs/00_core.ipynb 4
 class RGG:
@@ -32,15 +33,30 @@ class RGG:
                 if v not in self.parent:
                     self.parent[v]=s
                     dfs(gr,v)
+                    self.topo.append(v)
         self.parent = {}
-        res = 0
+        self.topo=[]
+        count = 0
         for i in range(self.n):
             if i not in self.parent:
-                res+=1
+                count+=1
                 self.parent[i]=None
                 dfs(self.adj,i)
-        return res
+                self.topo.append(i)
+        return count
 
     def degree_distribution(self):
         dgr=collections.Counter([len(v) for _,v in self.adj.items()])
         return np.array(list(dgr.items()))
+    
+    def cyclic(self):
+        pass
+
+# %% ../nbs/00_core.ipynb 11
+@patch
+def cyclic(self:RGG):
+    for k, lst in self.adj.items():
+        for v in lst:
+            if k != self.parent[v] and v!=self.parent[k]: 
+                return True
+    return False
