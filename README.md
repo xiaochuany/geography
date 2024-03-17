@@ -25,3 +25,10 @@ rgg.distances
            [0.54321049, 0.93033062, 0.        , 0.58329046, 0.65593205],
            [0.38930793, 0.49512131, 0.58329046, 0.        , 0.52525604],
            [0.14989957, 0.4051384 , 0.65593205, 0.52525604, 0.        ]])
+
+TODO:
+
+1.  connectivity threshold  
+2.  largest nearable neighbour link  
+3.  a module that creates random points in sets (e.g. manifold,
+    polytopes)
