@@ -13,7 +13,7 @@ _tmp*
 tmp*
 tags
 *.pkg
-sycn.sh
+sync.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
