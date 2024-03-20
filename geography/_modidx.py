@@ -10,6 +10,9 @@ d = { 'settings': { 'branch': 'main',
                                 'geography.core.RGG.adj': ('core.html#rgg.adj', 'geography/core.py'),
                                 'geography.core.RGG.cyclic': ('core.html#rgg.cyclic', 'geography/core.py'),
                                 'geography.core.RGG.degree_distribution': ('core.html#rgg.degree_distribution', 'geography/core.py'),
-                                'geography.core.RGG.distances': ('core.html#rgg.distances', 'geography/core.py'),
+                                'geography.core.RGG.distance_matrix': ('core.html#rgg.distance_matrix', 'geography/core.py'),
                                 'geography.core.RGG.n_comp': ('core.html#rgg.n_comp', 'geography/core.py'),
-                                'geography.core.RGG.n_tri': ('core.html#rgg.n_tri', 'geography/core.py')}}}
+                                'geography.core.RGG.n_tri': ('core.html#rgg.n_tri', 'geography/core.py')},
+            'geography.points': { 'geography.points.find_next': ('points.html#find_next', 'geography/points.py'),
+                                  'geography.points.h': ('points.html#h', 'geography/points.py'),
+                                  'geography.points.update': ('points.html#update', 'geography/points.py')}}}

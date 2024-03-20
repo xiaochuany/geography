@@ -6,25 +6,26 @@ __all__ = ['RGG']
 # %% ../nbs/00_core.ipynb 3
 import numpy as np
 import functools
-import seaborn.objects as so
 import collections
 from fastcore.basics import patch
 
 # %% ../nbs/00_core.ipynb 4
 class RGG:
     """random geometric graph"""
-    def __init__(self,n:int,r:float):
+    def __init__(self,n:int,r:float, d:int=2):
         self.n = n
         self.r = r
-        self.points = np.random.default_rng().random((n,2))
+        self.points = np.random.default_rng().random((n,d))
     
     @functools.cached_property
-    def distances(self):
-        return np.array([np.sqrt(np.sum((x- self.points)**2, axis=1)) for x in self.points])
+    def distance_matrix(self):
+        a = self.points
+        diff = a[:,None,:] - a[None,:,:]
+        return np.linalg.norm(diff,axis=-1)
 
     @functools.cached_property
     def adj(self):
-        mask = self.distances < self.r
+        mask = self.distance_matrix < self.r
         return {i: [j for j,v in enumerate(row) if v and j != i] for i,row in enumerate(mask)}
     
 
@@ -68,6 +69,6 @@ def cyclic(self:RGG):
 # %% ../nbs/00_core.ipynb 15
 @patch
 def n_tri(self:RGG):
-    A = (self.distances<=self.r).astype(np.int64)
+    A = (self.distance_matrix<=self.r).astype(np.int64)
     np.fill_diagonal(A,0)
     return np.trace(np.linalg.matrix_power(A,3))//6
