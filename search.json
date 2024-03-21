@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "geography",
+    "section": "",
+    "text": "pip install geography",
+    "crumbs": [
+      "geography"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "geography",
+    "section": "",
+    "text": "pip install geography",
+    "crumbs": [
+      "geography"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "geography",
+    "section": "How to use",
+    "text": "How to use\ncreate a random geometric graph\n\nrgg = RGG(5,0.1)\n\n\nrgg.distance_matrix\n\narray([[0.        , 0.57886123, 0.73705664, 0.78457206, 0.49624727],\n       [0.57886123, 0.        , 0.23551432, 0.72475315, 0.78846123],\n       [0.73705664, 0.23551432, 0.        , 0.95237978, 1.01597422],\n       [0.78457206, 0.72475315, 0.95237978, 0.        , 0.44843036],\n       [0.49624727, 0.78846123, 1.01597422, 0.44843036, 0.        ]])\n\n\nTODO:\n\nconnectivity threshold\n\nlargest nearable neighbour link\n\na module that creates random points in sets (e.g. manifold, polytopes)",
+    "crumbs": [
+      "geography"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nRGG\n\n RGG (n:int, r:float, d:int=2)\n\nrandom geometric graph\n\nrgg = RGG(100,0.1)\nrgg.distance_matrix\n\narray([[0.        , 0.68322164, 0.8618508 , ..., 0.73970171, 0.63447826,\n        0.24001312],\n       [0.68322164, 0.        , 0.42815998, ..., 0.20885082, 0.72365535,\n        0.44322179],\n       [0.8618508 , 0.42815998, 0.        , ..., 0.21949189, 0.52286384,\n        0.66194194],\n       ...,\n       [0.73970171, 0.20885082, 0.21949189, ..., 0.        , 0.59111336,\n        0.51289512],\n       [0.63447826, 0.72365535, 0.52286384, ..., 0.59111336, 0.        ,\n        0.57997656],\n       [0.24001312, 0.44322179, 0.66194194, ..., 0.51289512, 0.57997656,\n        0.        ]])\n\n\n\nrgg.adj\n\n{0: [26, 43],\n 1: [33, 55, 56, 58, 61, 63],\n 2: [27, 34, 71],\n 3: [18, 36],\n 4: [31],\n 5: [49, 65],\n 6: [24, 50],\n 7: [66],\n 8: [65, 85],\n 9: [28, 44, 54, 81],\n 10: [33, 51, 52, 55, 63, 74],\n 11: [23, 70],\n 12: [16, 89],\n 13: [17, 31],\n 14: [73, 80],\n 15: [69, 86],\n 16: [12, 18, 44],\n 17: [13, 31],\n 18: [3, 16, 36, 44, 54],\n 19: [45],\n 20: [],\n 21: [47, 62, 76, 87],\n 22: [29, 35, 67, 79],\n 23: [11, 30, 75, 93],\n 24: [6, 50],\n 25: [38, 53],\n 26: [0, 43],\n 27: [2, 34, 71],\n 28: [9, 44, 54, 81, 95],\n 29: [22, 35, 67, 73],\n 30: [23, 75, 93],\n 31: [4, 13, 17],\n 32: [41, 88],\n 33: [1, 10, 55, 58, 63],\n 34: [2, 27, 69],\n 35: [22, 29, 67],\n 36: [3, 18],\n 37: [72],\n 38: [25, 53],\n 39: [47, 78, 90, 92],\n 40: [47],\n 41: [32, 88],\n 42: [],\n 43: [0, 26, 50],\n 44: [9, 16, 18, 28, 54, 81],\n 45: [19, 57],\n 46: [83, 94],\n 47: [21, 39, 40, 92],\n 48: [85, 96],\n 49: [5, 61],\n 50: [6, 24, 43, 77],\n 51: [10, 74],\n 52: [10, 56],\n 53: [25, 38],\n 54: [9, 18, 28, 44, 81, 95],\n 55: [1, 10, 33, 56, 58, 63],\n 56: [1, 52, 55, 58, 61],\n 57: [45],\n 58: [1, 33, 55, 56, 63],\n 59: [64],\n 60: [],\n 61: [1, 49, 56],\n 62: [21, 76],\n 63: [1, 10, 33, 55, 58],\n 64: [59],\n 65: [5, 8, 85],\n 66: [7],\n 67: [22, 29, 35, 73],\n 68: [89, 99],\n 69: [15, 34],\n 70: [11, 84, 95],\n 71: [2, 27],\n 72: [37],\n 73: [14, 29, 67, 80],\n 74: [10, 51],\n 75: [23, 30, 93],\n 76: [21, 62, 87],\n 77: [50, 99],\n 78: [39, 90, 92],\n 79: [22],\n 80: [14, 73],\n 81: [9, 28, 44, 54],\n 82: [98],\n 83: [46, 94],\n 84: [70],\n 85: [8, 48, 65],\n 86: [15, 90, 97],\n 87: [21, 76],\n 88: [32, 41],\n 89: [12, 68],\n 90: [39, 78, 86, 92],\n 91: [],\n 92: [39, 47, 78, 90],\n 93: [23, 30, 75],\n 94: [46, 83],\n 95: [28, 54, 70],\n 96: [48],\n 97: [86],\n 98: [82],\n 99: [68, 77]}\n\n\n\np = so.Plot(x=rgg.points[:,0], y=rgg.points[:,1])\np.add(so.Dots())\n\n\n\n\n\n\n\n\n\nrgg.n_comp()\n\n17\n\n\n\nd_np = rgg.degree_distribution()\nd_np\n\narray([[ 2, 38],\n       [ 6,  5],\n       [ 3, 18],\n       [ 1, 16],\n       [ 4, 13],\n       [ 5,  6],\n       [ 0,  4]])\n\n\n\n(\n    so.Plot(x=d_np[:,0], y=d_np[:,1])\n    .add(so.Line())\n)\n\n\n\n\n\n\n\n\n\nrgg.cyclic()\n\nTrue\n\n\n\nrgg.n_tri()\n\n58",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "points.html",
+    "href": "points.html",
+    "title": "points",
+    "section": "",
+    "text": "source\n\n\n\n find_next (f, points, t)\n\n\nsource\n\n\n\n\n update (f, t)\n\n\nsource\n\n\n\n\n h (x:&lt;built-infunctionarray&gt;, al=1.2)\n\nkernel function\n\nprint(find_next(h, rng.random((5,2)),0.5))\n\ntimes = rng.random((3,))*5\nf = h\nfor t in times:\n    f = update(f,t)\n\nx = np.linspace(0,5,100)\nplt.plot(x, f(x))\n\n2",
+    "crumbs": [
+      "points"
+    ]
+  },
+  {
+    "objectID": "points.html#helper-functions",
+    "href": "points.html#helper-functions",
+    "title": "points",
+    "section": "",
+    "text": "source\n\n\n\n find_next (f, points, t)\n\n\nsource\n\n\n\n\n update (f, t)\n\n\nsource\n\n\n\n\n h (x:&lt;built-infunctionarray&gt;, al=1.2)\n\nkernel function\n\nprint(find_next(h, rng.random((5,2)),0.5))\n\ntimes = rng.random((3,))*5\nf = h\nfor t in times:\n    f = update(f,t)\n\nx = np.linspace(0,5,100)\nplt.plot(x, f(x))\n\n2",
+    "crumbs": [
+      "points"
+    ]
+  }
+]
