@@ -10,25 +10,32 @@ pip install geography
 
 ## How to use
 
-create a random geometric graph
+create a random geometric graph from samples in a convex polytope
 
 ``` python
-rgg = RGG(5,0.1)
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.spatial import ConvexHull
 ```
 
 ``` python
-rgg.distance_matrix
+rgg = RGG(100,0.1, shape=ConvexHull(np.random.default_rng().uniform(0,1,(3,2))))
+plt.scatter(*rgg.points.T)
 ```
 
-    array([[0.        , 0.57886123, 0.73705664, 0.78457206, 0.49624727],
-           [0.57886123, 0.        , 0.23551432, 0.72475315, 0.78846123],
-           [0.73705664, 0.23551432, 0.        , 0.95237978, 1.01597422],
-           [0.78457206, 0.72475315, 0.95237978, 0.        , 0.44843036],
-           [0.49624727, 0.78846123, 1.01597422, 0.44843036, 0.        ]])
+    <matplotlib.collections.PathCollection>
+
+![](index_files/figure-commonmark/cell-3-output-2.png)
+
+``` python
+plt.bar(*rgg.degree_distribution().T)
+```
+
+    <BarContainer object of 47 artists>
+
+![](index_files/figure-commonmark/cell-4-output-2.png)
 
 TODO:
 
 1.  connectivity threshold  
-2.  largest nearable neighbour link  
-3.  a module that creates random points in sets (e.g. manifold,
-    polytopes)
+2.  largest nearable neighbour link

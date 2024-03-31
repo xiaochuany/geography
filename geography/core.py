@@ -8,14 +8,19 @@ import numpy as np
 import functools
 import collections
 from fastcore.basics import patch
+from .points import Points
 
 # %% ../nbs/00_core.ipynb 4
 class RGG:
     """random geometric graph"""
-    def __init__(self,n:int,r:float, d:int=2):
+    def __init__(self,n:int, # average number of points
+                 r:float,  # connection radius
+                 d:int=2, # dimension
+                 law = "binomial", # either poisson or binomial
+                 shape = None): # convex polytope
         self.n = n
         self.r = r
-        self.points = np.random.default_rng().random((n,d))
+        self.points = Points(n=n,d=d, law=law, shape=shape).points()
     
     @functools.cached_property
     def distance_matrix(self):
