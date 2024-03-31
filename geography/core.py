@@ -61,3 +61,4 @@ class RGG:
         A = (self.distance_matrix<=self.r).astype(np.int64)
         np.fill_diagonal(A,0)
         return np.trace(np.linalg.matrix_power(A,3))//6
+

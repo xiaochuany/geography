@@ -13,6 +13,10 @@ d = { 'settings': { 'branch': 'main',
                                 'geography.core.RGG.distance_matrix': ('core.html#rgg.distance_matrix', 'geography/core.py'),
                                 'geography.core.RGG.n_comp': ('core.html#rgg.n_comp', 'geography/core.py'),
                                 'geography.core.RGG.n_tri': ('core.html#rgg.n_tri', 'geography/core.py')},
-            'geography.points': { 'geography.points.find_next': ('points.html#find_next', 'geography/points.py'),
-                                  'geography.points.h': ('points.html#h', 'geography/points.py'),
-                                  'geography.points.update': ('points.html#update', 'geography/points.py')}}}
+            'geography.hawkes': { 'geography.hawkes.find_next': ('hawkes.html#find_next', 'geography/hawkes.py'),
+                                  'geography.hawkes.h': ('hawkes.html#h', 'geography/hawkes.py'),
+                                  'geography.hawkes.update': ('hawkes.html#update', 'geography/hawkes.py')},
+            'geography.points': { 'geography.points.Points': ('points.html#points', 'geography/points.py'),
+                                  'geography.points.Points.__init__': ('points.html#points.__init__', 'geography/points.py'),
+                                  'geography.points.Points.points': ('points.html#points.points', 'geography/points.py'),
+                                  'geography.points.in_hull': ('points.html#in_hull', 'geography/points.py')}}}
