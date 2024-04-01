@@ -18,52 +18,54 @@ class RGG:
                  d:int=2, # dimension
                  law = "binomial", # either poisson or binomial
                  shape = None): # convex polytope
-        self.n = n
+        self.V = Points(n=n,d=d, law=law, shape=shape)
+        self.n = self.V.n
         self.r = r
-        self.points = Points(n=n,d=d, law=law, shape=shape).points()
     
     @functools.cached_property
-    def distance_matrix(self):
-        a = self.points
-        diff = a[:,None,:] - a[None,:,:]
-        return np.linalg.norm(diff,axis=-1)
-
-    @functools.cached_property
     def adj(self):
-        mask = self.distance_matrix < self.r
+        mask = self.V.distance_matrix < self.r
         return {i: [j for j,v in enumerate(row) if v and j != i] for i,row in enumerate(mask)}
 
-    def n_comp(self):
-        def dfs(gr,s):
-            for v in gr[s]:
-                if v not in self.parent:
-                    self.parent[v]=s
-                    dfs(gr,v)
-                    self.topo.append(v)
-        self.parent = {}
-        self.topo=[]
-        count = 0
-        for i in range(self.n):
-            if i not in self.parent:
-                count+=1
-                self.parent[i]=None
-                dfs(self.adj,i)
-                self.topo.append(i)
-        return count
-        
-    def degree_distribution(self):
-        dgr=collections.Counter([len(v) for _,v in self.adj.items()])
-        return np.array(list(dgr.items()))
 
-    def cyclic(self):
-        for k, lst in self.adj.items():
-            for v in lst:
-                if k != self.parent[v] and v!=self.parent[k]: 
-                    return True
-        return False
+# %% ../nbs/00_core.ipynb 9
+@patch
+def n_comp(self:RGG):
+    def dfs(gr,s):
+        for v in gr[s]:
+            if v not in self.parent:
+                self.parent[v]=s
+                dfs(gr,v)
+                self.topo.append(v)
+    self.parent = {}
+    self.topo=[]
+    count = 0
+    for i in range(self.n):
+        if i not in self.parent:
+            count+=1
+            self.parent[i]=None
+            dfs(self.adj,i)
+            self.topo.append(i)
+    return count
 
-    def n_tri(self):
-        A = (self.distance_matrix<=self.r).astype(np.int64)
-        np.fill_diagonal(A,0)
-        return np.trace(np.linalg.matrix_power(A,3))//6
+# %% ../nbs/00_core.ipynb 11
+@patch
+def degree_distribution(self:RGG):
+    dgr=collections.Counter([len(v) for _,v in self.adj.items()])
+    return np.array(list(dgr.items()))
 
+# %% ../nbs/00_core.ipynb 14
+@patch
+def cyclic(self:RGG):
+    for k, lst in self.adj.items():
+        for v in lst:
+            if k != self.parent[v] and v!=self.parent[k]: 
+                return True
+    return False
+
+# %% ../nbs/00_core.ipynb 16
+@patch
+def n_tri(self:RGG):
+    A = (self.V.distance_matrix<=self.r).astype(np.int64)
+    np.fill_diagonal(A,0)
+    return np.trace(np.linalg.matrix_power(A,3))//6

@@ -4,12 +4,12 @@
 __all__ = ['in_hull', 'Points']
 
 # %% ../nbs/02_points.ipynb 3
-import numpy as np
-from scipy.spatial import ConvexHull
-import functools
-import collections
 from typing import Literal, Optional
 from fastcore.basics import patch
+import functools
+
+import numpy as np
+from scipy.spatial import ConvexHull
 
 # %% ../nbs/02_points.ipynb 4
 def in_hull(point:np.array,  # 1d array 
@@ -25,28 +25,40 @@ class Points:
     """define binomial or poisson point process in a convex polytope"""
     def __init__(self, n:int, # (expected) number of points 
                 d=2,  # dimensionality
-                seed:Optional[int]=None, 
+                seed: Optional[int]=None, 
                 law: Literal["binomial","poisson"]="binomial", # distribution of the points 
-                shape:Optional[ConvexHull]=None): # sample from shape, default to unit box
+                shape: Optional[ConvexHull]=None): # sample from shape, default to unit box
         assert law in ["binomial","poisson"]
         self.rng = np.random.default_rng(seed)
-        self.n = rng.poisson(n) if law == "poisson" else n
+        self.n = self.rng.poisson(n) if law == "poisson" else n
         self.d = d
         self.shape = shape
+    
+    @functools.cached_property
+    def points(self):
+        """actually generate points from the prescribed distribution"""
+        if self.shape is None: # unit cube
+            return self.rng.uniform(size=(self.n,self.d))
+        else:
+            ps = []
+            for _ in range(self.n):
+                while True:
+                    # must mint new point, no seed passed
+                    sample = np.random.default_rng().uniform(self.shape.min_bound, self.shape.max_bound,(self.d,))                     
+                    if in_hull(sample, self.shape): ps.append(sample); break
+            assert len(ps)==self.n
+            return np.array(ps)
+        
+    @functools.cached_property
+    def distance_matrix(self):
+        ps = self.points
+        diff = ps[:,None,:] - ps[None,:,:]
+        return np.linalg.norm(diff,axis=-1)
 
-
-# %% ../nbs/02_points.ipynb 6
+# %% ../nbs/02_points.ipynb 10
 @patch
-def points(self:Points):
-    """actually generate points from the prescribed distribution"""
-    if self.shape is None: # unit cube
-        return self.rng.uniform(size=(self.n,self.d))
-    else:
-        ps = []
-        for _ in range(self.n):
-            while True:
-                # mint new point, cannot pass seed
-                sample = np.random.default_rng().uniform(self.shape.min_bound, self.shape.max_bound,(self.d,))                     
-                if in_hull(sample, self.shape): ps.append(sample); break
-        assert len(ps)==self.n
-        return np.array(ps)
+def lnnl(self:Points,k:int=1):
+    """computes largest k-nearest neighbour link"""
+    ds = self.distance_matrix
+    idx = np.argpartition(ds,k,-1)[:,k] # k-th col is the index of the k-th smallest val for each row. NOTE: diagonal of ds are 0s   
+    return ds[np.arange(self.n),idx].max()

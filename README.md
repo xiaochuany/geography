@@ -20,7 +20,7 @@ from scipy.spatial import ConvexHull
 
 ``` python
 rgg = RGG(100,0.1, shape=ConvexHull(np.random.default_rng().uniform(0,1,(3,2))))
-plt.scatter(*rgg.points.T)
+plt.scatter(*rgg.V.points.T)
 ```
 
     <matplotlib.collections.PathCollection>
@@ -31,11 +31,10 @@ plt.scatter(*rgg.points.T)
 plt.bar(*rgg.degree_distribution().T)
 ```
 
-    <BarContainer object of 47 artists>
+    <BarContainer object of 27 artists>
 
 ![](index_files/figure-commonmark/cell-4-output-2.png)
 
 TODO:
 
-1.  connectivity threshold  
-2.  largest nearable neighbour link
+- connectivity threshold
