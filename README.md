@@ -34,7 +34,3 @@ plt.bar(*rgg.degree_distribution().T)
     <BarContainer object of 27 artists>
 
 ![](index_files/figure-commonmark/cell-4-output-2.png)
-
-TODO:
-
-- connectivity threshold
