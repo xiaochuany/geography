@@ -42,25 +42,25 @@ for instance
 plt.bar(*rgg.degree_distribution().T)
 ```
 
-![](index_files/figure-commonmark/cell-4-output-1.png)
+    <BarContainer object of 20 artists>
+
+![](index_files/figure-commonmark/cell-4-output-2.png)
 
 ### Inspect the points
 
-Under the hood,
-[`RGG`](https://xiaochuany.github.io/geography/core.html#rgg) has the
-`V` (standing for vertices) attribute which is implemented as a
-[`Points`](https://xiaochuany.github.io/geography/points.html#points)
-object. We can inspect the coordinates of `V` as follows
+Under the hood, `RGG` has the `V` (standing for vertices) attribute
+which is implemented as a `Points` object. We can inspect the
+coordinates of `V` as follows
 
 ``` python
 plt.scatter(*rgg.V.points.T)
 ```
 
-![](index_files/figure-commonmark/cell-5-output-1.png)
+    <matplotlib.collections.PathCollection>
 
-Every
-[`Points`](https://xiaochuany.github.io/geography/points.html#points)
-object come with a few methods
+![](index_files/figure-commonmark/cell-5-output-2.png)
+
+Every `Points` object come with a few methods
 
 - `distance_matrix()`: pairwise distance of points
 - `lnnl(k)`: largest k-nearest neighbour link defined by $$

@@ -1,0 +1,5 @@
+config: N=5000, d=4, rep=5
+with masked array
+avg time elapsed:2.073462250600278
+just numpy array, without mask
+avg time elapsed:1.36126520740072

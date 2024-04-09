@@ -54,7 +54,6 @@ class Points:
         ps = self.points
         diff = ps[:,None,:] - ps[None,:,:]
         dm =  np.linalg.norm(diff,axis=-1)
-        np.fill_diagonal(dm,np.inf)
         return dm
 
 # %% ../nbs/02_points.ipynb 10
@@ -62,7 +61,7 @@ class Points:
 def lnnl(self:Points,k:int=1):
     """computes largest k-nearest neighbour link"""
     ds = self.distance_matrix
-    idx = np.argpartition(ds,k-1,-1)[:,k-1] # j-th col of argpartiion gives indices of j-th smallest of each row   
+    idx = np.argpartition(ds,k,-1)[:,k] # j-th col of argpartiion gives indices of j-th smallest of each row   
     return ds[np.arange(self.n),idx].max()
 
 # %% ../nbs/02_points.ipynb 12
@@ -73,16 +72,12 @@ def connectivity_threshold(self:Points, output_lnnl=False):
     component[s]=True
     lnnl = r = self.lnnl()
     dm = self.distance_matrix
-    dm_ma = np.ma.array(dm,mask=np.tile(component,(self.n,1)))
     while True:
         # collect vertices within distance r from component
-        t =  np.max(dm_ma[component]<=r,0)
-        if np.any(t): 
-            # if discover new things: add them to component; mask more cols
+        t =  np.max(dm[component]<=r,axis=0)
+        if np.any(t>component): # if discover new things: add them to component
             component[t]=True
             if np.all(component): break
-            dm_ma.mask = np.tile(component,(self.n,1))
-        else: 
-            # bfs done, component is a cluster; compute its distance to others 
-            r=dm_ma[component].min()
+        else: # bfs done, component is a cluster; compute its distance to others 
+            r = dm[component][:,~component].min()
     return r if not output_lnnl else (lnnl,r)
